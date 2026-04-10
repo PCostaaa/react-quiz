@@ -2,6 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# 🧠 The React Quiz
+
+This project is a sophisticated quiz application built to master complex state management in React. It was developed while following **Jonas Schmedtmann's "The Ultimate React Course."**
+
+### 🚀 Key Features
+* **State Management:** Powered entirely by `useReducer` for a predictable state flow.
+* **Real-time Scoring:** Instant feedback and progress tracking.
+* **Countdown Timer:** Integrated logic to handle quiz duration and "Game Over" states.
+* **Data Driven:** Fetches questions from a local JSON API.
+
 ## Available Scripts
 
 In the project directory, you can run:
