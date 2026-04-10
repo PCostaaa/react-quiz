@@ -1,8 +1,13 @@
-function Error() {
+function Error({ message, onRetry }) {
   return (
-    <p className="error">
-      <span>💥</span> There was an error fecthing questions.
-    </p>
+    <div className="error-box">
+      <p className="error">
+        <span>💥</span> {message || "There was an error fetching questions."}
+      </p>
+      <button className="btn" onClick={onRetry}>
+        Retry
+      </button>
+    </div>
   );
 }
 

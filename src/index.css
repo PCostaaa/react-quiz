@@ -27,10 +27,23 @@ body {
   min-height: 100vh;
   color: var(--color-light);
   background-color: var(--color-darkest);
+  background-image:
+    radial-gradient(
+      circle at top right,
+      rgba(16, 152, 173, 0.15),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 169, 77, 0.12),
+      transparent 35%
+    );
   padding: 3.2rem;
 }
 
 .app {
+  max-width: 78rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,15 +51,16 @@ body {
 }
 
 .main {
-  width: 50rem;
+  width: min(100%, 56rem);
 }
 
 .app-header {
-  width: 66rem;
+  width: min(100%, 66rem);
   margin-bottom: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.6rem;
 }
 
 .error {
@@ -56,6 +70,13 @@ body {
   padding: 2rem;
   background-color: #495057;
   border-radius: 100px;
+}
+
+.error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
 }
 
 img {
@@ -94,6 +115,18 @@ h4 {
   font-size: 1.8rem;
   margin-top: 2rem;
   margin-bottom: 3rem;
+  text-align: center;
+}
+
+.start-warning {
+  width: 100%;
+  background: rgba(255, 169, 77, 0.16);
+  border: 1px solid rgba(255, 169, 77, 0.45);
+  border-radius: 1.2rem;
+  padding: 1rem 1.4rem;
+  font-size: 1.4rem;
+  color: #ffd7aa;
+  margin-bottom: 2rem;
 }
 
 .selection-group {
@@ -146,6 +179,21 @@ h4 {
   color: var(--color-medium);
 }
 
+.progress-mode {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  justify-self: start;
+  align-items: center;
+  background: rgba(255, 169, 77, 0.2);
+  border: 1px solid rgba(255, 169, 77, 0.35);
+  color: #ffd7aa;
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 progress {
   -webkit-appearance: none;
   width: 100%;
@@ -191,6 +239,36 @@ progress {
   float: right;
 }
 
+.shuffle-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.6rem;
+  margin-top: 0.2rem;
+}
+
+.shuffle-toggle input {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.start-stats {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.start-stats p {
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.2rem;
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
+}
+
 .options {
   display: flex;
   flex-direction: column;
@@ -201,6 +279,28 @@ progress {
 .btn-option {
   width: 100%;
   text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.option-key {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.shortcut-hint {
+  margin: -0.8rem 0 1.6rem;
+  color: var(--color-medium);
+  font-size: 1.2rem;
 }
 
 .btn-option.correct {
@@ -240,6 +340,22 @@ progress {
   margin-bottom: 4.8rem;
 }
 
+.review-badge {
+  margin-bottom: 1.2rem;
+  text-align: center;
+  color: #b3f5ff;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.finish-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .loader-container {
   display: flex;
   flex-direction: column;
@@ -266,6 +382,115 @@ footer {
   align-items: center;
   margin-top: 3.2rem;
   gap: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 56em) {
+  body {
+    padding: 2rem;
+  }
+
+  .app-header {
+    margin-bottom: 2.4rem;
+  }
+
+  h1 {
+    font-size: 4.4rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 40em) {
+  body {
+    padding: 1.2rem;
+  }
+
+  .app-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  img {
+    width: 10rem;
+  }
+
+  h1 {
+    font-size: 3.6rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
+
+  .start p {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .selection-buttons {
+    gap: 0.8rem;
+  }
+
+  .btn-selection {
+    width: calc(50% - 0.4rem);
+    text-align: center;
+    padding: 0.9rem 1.2rem;
+  }
+
+  .progress {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .shortcut-hint {
+    display: none;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 1rem 1.6rem;
+  }
+
+  .btn-ui {
+    float: none;
+  }
+
+  .btn-option:not([disabled]):hover,
+  .answer {
+    transform: none;
+  }
+
+  .timer {
+    width: 100%;
+    text-align: center;
+    float: none;
+  }
+
+  footer {
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .start-stats {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */

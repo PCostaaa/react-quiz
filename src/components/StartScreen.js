@@ -1,22 +1,51 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
-export default function StartScreen({ numQuestions, dispatch }) {
-  const [selectedCount, setSelectedCount] = useState(10);
+export default function StartScreen({
+  numQuestions,
+  questions,
+  dispatch,
+  errorMessage,
+}) {
+  const [selectedCount, setSelectedCount] = useState(
+    Math.min(10, numQuestions),
+  );
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
+  const [shuffleQuestions, setShuffleQuestions] = useState(false);
+
+  const availableForDifficulty = useMemo(() => {
+    if (selectedDifficulty === "all") return numQuestions;
+    return questions.filter((q) => q.difficulty === selectedDifficulty).length;
+  }, [numQuestions, questions, selectedDifficulty]);
+
+  const questionOptions = useMemo(
+    () =>
+      [...new Set([5, 10, numQuestions])]
+        .filter((value) => value > 0)
+        .sort((a, b) => a - b),
+    [numQuestions],
+  );
+
+  const estimatedMinutes = Math.ceil(
+    (Math.min(selectedCount, availableForDifficulty) * 30) / 60,
+  );
 
   function handleStart() {
     dispatch({
       type: "start",
-      payload: { numQuestions: selectedCount, difficulty: selectedDifficulty },
+      payload: {
+        numQuestions: selectedCount,
+        difficulty: selectedDifficulty,
+        shuffle: shuffleQuestions,
+      },
     });
   }
-
-  const questionOptions = [5, 10, numQuestions];
 
   return (
     <div className="start">
       <h2>Welcome to The React Quiz</h2>
       <p>{numQuestions} Questions available to test your React mastery</p>
+
+      {errorMessage && <p className="start-warning">{errorMessage}</p>}
 
       {/* Number of Questions Selection */}
       <div className="selection-group">
@@ -57,10 +86,29 @@ export default function StartScreen({ numQuestions, dispatch }) {
         </div>
       </div>
 
+      <label className="shuffle-toggle">
+        <input
+          type="checkbox"
+          checked={shuffleQuestions}
+          onChange={(e) => setShuffleQuestions(e.target.checked)}
+        />
+        Shuffle question order
+      </label>
+
+      <div className="start-stats">
+        <p>
+          Questions in this mode: <strong>{availableForDifficulty}</strong>
+        </p>
+        <p>
+          Estimated time: <strong>{estimatedMinutes || 1} min</strong>
+        </p>
+      </div>
+
       <button
         className="btn btn-ui"
         onClick={handleStart}
         style={{ marginTop: "2rem" }}
+        disabled={availableForDifficulty === 0}
       >
         Let's Start
       </button>

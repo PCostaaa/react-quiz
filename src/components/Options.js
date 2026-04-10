@@ -9,7 +9,8 @@ function Options({ question, dispatch, answer }) {
           disabled={hasAnswered}
           onClick={() => dispatch({ type: "newAnswer", payload: index })}
         >
-          {option}
+          <span className="option-key">{index + 1}</span>
+          <span>{option}</span>
         </button>
       ))}
     </div>

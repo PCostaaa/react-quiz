@@ -1,6 +1,14 @@
-function NextButton({ dispatch, answer, index, numQuestions, answers }) {
+function NextButton({ dispatch, answer, index, numQuestions }) {
   return (
     <div style={{ display: "flex", gap: "1rem", justifyContent: "flex-end" }}>
+      <button
+        className="btn"
+        onClick={() => dispatch({ type: "restart" })}
+        style={{ float: "none" }}
+      >
+        Restart
+      </button>
+
       {/* Back Button */}
       {index > 0 && (
         <button
