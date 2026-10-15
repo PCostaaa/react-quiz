@@ -5,9 +5,9 @@ Developed while following Jonas Schmedtmann's *Ultimate React Course* (Udemy).
 
 ## 📸 Screenshots
 
-![Start screen with quiz options](./screenshots/start.png)
-![Answered question with feedback](./screenshots/question.png)
-![Final score](./screenshots/results.png)
+![Start screen with quiz options](./start.png)
+![Answered question with feedback](./question.png)
+![Final score](./results.png)
 
 ## 🚀 Features
 
